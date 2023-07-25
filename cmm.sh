@@ -72,15 +72,17 @@ file_path="/tmp/.ai_commit_$date_str"  # 创建文件路径
 echo "$commit_msg" > $file_path  # 写入 commit 消息到文件
 vim $file_path
 # 提示用户是否使用这个文件进行提交
-echo "Do you want to use this commit message? [Y/n]"
+echo -e "\033[32mDo you want to use this commit message? [Y/n]\033[0m"
 read answer
 
 # 如果用户回答'Y'或者'y'，那么执行git commit命令
 if [ "$answer" == "Y" ] || [ "$answer" == "y" ]; then
     git commit -a -F $file_path
+    echo -e "\033[32mCommit successful.\033[0m"
 else
-    echo "Commit cancelled."
+    echo -e "\033[31mCommit cancelled.\033[0m"
 fi
+
 
 # 删除临时文件
 rm $file_path
