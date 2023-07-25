@@ -2,6 +2,13 @@
 
 该脚本利用了 OpenAI 的 GPT-3.5-turbo 模型来生成专业且简洁的 Git Commit 信息。
 
+
+## Quick Start
+
+```bash
+wget -O /usr/local/bin/cmm https://raw.githubusercontent.com/uk0/aicommit-shell/main/cmm.sh && chmod +x /usr/local/bin/cmm
+```
+
 ## 功能
 
 - 根据 Git 状态生成详细的 commit 信息
