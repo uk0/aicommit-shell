@@ -1,4 +1,6 @@
 #!/bin/bash
+echo -e "\033[32mWelcome to the AI Commit Message Tool!\033[0m"
+
 baseDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 workingDir="$(pwd)"
 igoirefile=`cat $workingDir/.gitignore`
@@ -70,9 +72,14 @@ commit_msg=$(echo $response |jq -r '.choices[] | select(.message.role=="assistan
 date_str=$(date '+%Y-%m-%d_%H:%M:%S')  # 获取当前日期和时间
 file_path="/tmp/.ai_commit_$date_str"  # 创建文件路径
 echo "$commit_msg" > $file_path  # 写入 commit 消息到文件
+
 vim $file_path
+
 # 提示用户是否使用这个文件进行提交
+echo -e "\033[32mGenerating commit message...\033[0m"
+echo -e "\033[1;37m$(cat $file_path)\033[0m"
 echo -e "\033[32mDo you want to use this commit message? [Y/n]\033[0m"
+
 read answer
 
 # 如果用户回答'Y'或者'y'，那么执行git commit命令
