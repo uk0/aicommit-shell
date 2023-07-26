@@ -44,19 +44,17 @@ BODY_DATA=$(jq -n \
        },
        {
          "role": "user",
-         "content": "\($git_status)\n帮我将上面的内容总结。"
+         "content": "\($git_status)\n 帮我将上面的内容按照规则进行分析总结。"
        }
      ],
      "temperature": 1,
-     "max_tokens": 128,
+     "max_tokens": 256,
      "top_p": 1,
      "frequency_penalty": 0,
      "presence_penalty": 0,
      "model": "gpt-3.5-turbo-16k-0613",
      "stream": false
    }')
-
-# 环境变量
 
 # 使用环境变量的 curl 请求
 response=$(curl -s -X --location --request POST $api_url \
