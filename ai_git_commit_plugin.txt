@@ -67,7 +67,7 @@
         (use "git add <file>..." to include in what will be committed)
               .gitignore
 
-- AI Git Commit Tools "feat(main): add new files and modify existing one
+- AI Git Commit Tools: "feat(main): add new files and modify existing one
 
                        - Add new file: .gitignore
                        - Add new file: prompt.txt
