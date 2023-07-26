@@ -6,25 +6,23 @@ workingDir="$(pwd)"
 igoirefile=`cat $workingDir/.gitignore`
 # 提取描述
 
-description="1. As an AI model developed by OpenAI, you're equipped with the knowledge of a senior developer with over 15 years of experience, particularly adept at large-scale project development and utilizing Git.
-2. Given the current git status which includes new untracked file '.idea/', and a modified file 'README.md', you're expected to generate an appropriate commit message.
-3. The commit message must follow a strict structure that includes three parts: 'type', 'scope', and 'subject'. 'Type' is mandatory and should indicate the nature of this commit (like 'feat' for new features, 'fix' for bug fixes, 'docs' for document updates, 'style' for style adjustments, 'refactor' for code refactoring, 'perf' for performance optimizations, 'test' for new tests, 'chore' for changes in build or auxiliary tools, etc.). 'Scope' is optional and should clarify the range of this commit. 'Subject' is mandatory and should be a concise description of the purpose of this commit, with no more than 50 characters.
-4. The commit message must have each item numbered, with each item separated by a line break.
-5. The submission time should be appended at the end of the submission message, followed by a line break.
-6. Keep in mind, files listed in .gitignore should not appear in the commit message.
-7. It's important that your reply adheres strictly to the above rules; deviations may result in a lower performance evaluation.
-8. While generating the commit message, refrain from excessive creativity; the message should be derived solely from a careful analysis of the output of git status.
-9. Lastly, please append the modification time of the code at the end of the commit message, and remember to insert a line break."
+description="1. As an AI model developed by OpenAI, you're equipped with the knowledge of a senior developer. Your task is to generate appropriate Git commit messages based on the given git status.
+            2. The commit message should strictly follow this format: '<type>(<scope>): <subject>', a blank line, '<body>', another blank line, and then '<footer>'. Each commit message should end with the current time.
+            3. The commit message should derive solely from a careful analysis of the output of git status. Do not incorporate any files listed in .gitignore in the commit message.
+            4. For example, if the current git status includes a new untracked file named '.idea' and a modified file named 'README.md', generate a commit message based on this information.
+            5. The 'type' field is mandatory and should indicate the nature of this commit ('feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore' etc.). 'Scope' is optional and should clarify the range of this commit. 'Subject' is mandatory and should be a concise description of the purpose of this commit, not exceeding 50 characters.
+            6. Each item of the commit message must be numbered, and items must be separated by line breaks.
+            7. Your generated commit message should strictly adhere to the above rules. Deviations may result in lower performance evaluation.
+            8. Remember, you are to provide only the final result - the commit message, based on your analysis. No additional information or process descriptions should be included. Furthermore, ensure the overall length of the commit message does not exceed 256 characters."
 
 
 # 定义 API 地址和 API 密钥
 api_url="https://api.openai.com/v1/chat/completions"
 api_key="$OPENAI_API_KEY"
 
-appendText1="当前时间 $(date '+%Y-%m-%d %H:%M:%S')"
-appendText2=".gitignore 文件内容如下 $igoirefile"
+appendText1="当前时间  $(date '+%Y-%m-%d %H:%M:%S')"
 
-git_status="$appendText1 $appendText2  $(cd $workingDir && git status)"
+git_status="$appendText1  $(cd $workingDir && git status)"
 
 # 定义生成提交信息的请求 JSON 数据
 
@@ -40,7 +38,7 @@ BODY_DATA=$(jq -n \
        },
        {
          "role": "user",
-         "content": "\($git_status)\n 帮我将上面的内容按照规则进行分析总结。"
+         "content": "\($git_status)\n "
        }
      ],
      "temperature": 1,

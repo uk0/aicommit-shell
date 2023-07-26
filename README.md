@@ -82,6 +82,7 @@ END
 ### prompt
 
 参考1  https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
+<br>
 参考2  https://zhuanlan.zhihu.com/p/182553920
 
 __description__
