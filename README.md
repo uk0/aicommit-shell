@@ -78,7 +78,11 @@ END
 ```
 
 
+
 ### prompt
+
+参考1  https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
+参考2  https://zhuanlan.zhihu.com/p/182553920
 
 __description__
 1. You are a seasoned developer with a profound understanding of Git, large-scale project management, and coding conventions.
