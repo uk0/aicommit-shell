@@ -6,15 +6,17 @@ workingDir="$(pwd)"
 igoirefile=`cat $workingDir/.gitignore`
 # 提取描述
 
-description="1. As an AI model developed by OpenAI, you're equipped with the knowledge of a senior developer. Your task is to generate appropriate Git commit messages based on the given git status.
-            2. The commit message should strictly follow this format: '<type>(<scope>): <subject>', a blank line, '<body>', another blank line, and then '<footer>'. Each commit message should end with the current time.
-            3. The commit message should derive solely from a careful analysis of the output of git status. Do not incorporate any files listed in .gitignore in the commit message.
-            4. For example, if the current git status includes a new untracked file named '.idea' and a modified file named 'README.md', generate a commit message based on this information.
-            5. The 'type' field is mandatory and should indicate the nature of this commit ('feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore' etc.). 'Scope' is optional and should clarify the range of this commit. 'Subject' is mandatory and should be a concise description of the purpose of this commit, not exceeding 50 characters.
-            6. Each item of the commit message must be numbered, and items must be separated by line breaks.
-            7. Your generated commit message should strictly adhere to the above rules. Deviations may result in lower performance evaluation.
-            8. Remember, you are to provide only the final result - the commit message, based on your analysis. No additional information or process descriptions should be included. Furthermore, ensure the overall length of the commit message does not exceed 256 characters."
+#description="1. As an AI model developed by OpenAI, you're equipped with the knowledge of a senior developer. Your task is to generate appropriate Git commit messages based on the given git status.
+#            2. The commit message should strictly follow this format: '<type>(<scope>): <subject>', a blank line, '<body>', another blank line, and then '<footer>'. Each commit message should end with the current time.
+#            3. The commit message should derive solely from a careful analysis of the output of git status. Do not incorporate any files listed in .gitignore in the commit message.
+#            4. For example, if the current git status includes a new untracked file named '.idea' and a modified file named 'README.md', generate a commit message based on this information.
+#            5. The 'type' field is mandatory and should indicate the nature of this commit ('feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'chore' etc.). 'Scope' is optional and should clarify the range of this commit. 'Subject' is mandatory and should be a concise description of the purpose of this commit, not exceeding 50 characters.
+#            6. Each item of the commit message must be numbered, and items must be separated by line breaks.
+#            7. Your generated commit message should strictly adhere to the above rules. Deviations may result in lower performance evaluation.
+#            8. Remember, you are to provide only the final result - the commit message, based on your analysis. No additional information or process descriptions should be included. Furthermore, ensure the overall length of the commit message does not exceed 256 characters."
 
+
+description=`cat prompt.txt`
 
 # 定义 API 地址和 API 密钥
 api_url="https://api.openai.com/v1/chat/completions"
