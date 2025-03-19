@@ -2,9 +2,9 @@
 
 baseDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# 定义 API 地址和 API 密钥
-api_url="https://api.chatanywhere.tech/v1/chat/completions"
-api_key="sk-"
+# 定义 API 地址和 API 密钥,可以自己自行替换。
+api_url="https://api.openai.com/v1/chat/completions"
+api_key=$(OPENAI_API_KEY)
 
 
 # 📝 Get only the diff of what has already been staged
