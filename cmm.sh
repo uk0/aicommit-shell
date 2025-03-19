@@ -3,8 +3,9 @@
 baseDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # 定义 API 地址和 API 密钥
-api_url="https://api.openai.com/v1/chat/completions"  
-api_key="$OPENAI_API_KEY"
+api_url="https://api.chatanywhere.tech/v1/chat/completions"
+api_key="sk-"
+
 
 # 📝 Get only the diff of what has already been staged
 git_diff_output=$(git diff --cached)
@@ -12,7 +13,7 @@ git_diff_output=$(git diff --cached)
 
 # 🛑 Check if there are any staged changes to commit
 if [ -z "$git_diff_output" ]; then
-  echo "⚠️  No staged changes detected. Aborting."    
+  echo "⚠️  No staged changes detected. Aborting."
   exit 1
 fi
 
@@ -53,9 +54,9 @@ BODY_DATA=$(jq -n \
 	 "content": ("Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should follow the conventional commit format (emoji+status) and provide meaningful context for future readers.\n\nChanges:\n" + $diff)
        }
      ],
-     "temperature": 0.3,
-     "max_tokens": 256,
-     "top_p": 0.8,
+     "temperature": 0.2,
+     "max_tokens": 512,
+     "top_p": 0.5,
      "frequency_penalty": 0,
      "presence_penalty": 0,
      "model": "gpt-4o-ca",
@@ -79,9 +80,9 @@ echo "$commit_msg" > $file_path  # 写入 commit 消息到文件
 vim $file_path
 
 # 提示用户是否使用这个文件进行提交
-echo -e "\033[32mGenerating commit message...\033[0m"  
+echo -e "\033[32mGenerating commit message...\033[0m"
 echo -e "\033[1;37m$(cat $file_path)\033[0m"
-echo -e "\033[32mDo you want to use this commit message? [Y/n]\033[0m"    
+echo -e "\033[32mDo you want to use this commit message? [Y/n]\033[0m"
 
 read answer
 
