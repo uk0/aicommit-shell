@@ -21,20 +21,20 @@ fi
 git_diff_output_limited=$(echo "$git_diff_output" | head -n 100)
 
 emoji_table="
-Emoji	Conventional Commit Type	说明
-✨	feat	新功能（feature）
-🐛	fix	修复 bug
-📝	docs	修改或新增文档
-🎨	style	格式变动（不影响代码运行）
-♻️	refactor	重构（非新增功能或修复的代码变动）
-⚡️	perf	性能优化
-✅	test	新增或修改测试用例
-🔧	chore	构建过程或辅助工具的变动，或不影响源代码的改动
-🚑️	hotfix	紧急修复
-🚀	deploy	部署
-🔒	security	安全方面的改动
-🔀	merge	分支合并
-⬆️	upgrade	依赖或版本升级
+Emoji   Conventional Commit Type        说明
+✨      feat    新功能（feature）
+🐛      fix     修复 bug
+📝      docs    修改或新增文档
+🎨      style   格式变动（不影响代码运行）
+♻️      refactor        重构（非新增功能或修复的代码变动）
+⚡️      perf    性能优化
+✅      test    新增或修改测试用例
+🔧      chore   构建过程或辅助工具的变动，或不影响源代码的改动
+🚑️      hotfix  紧急修复
+🚀      deploy  部署
+🔒      security   安全方面的改动
+🔀      merge   分支合并
+⬆️      upgrade 依赖或版本升级
 "
 
 # 定义生成提交信息的请求 JSON 数据
@@ -51,15 +51,15 @@ BODY_DATA=$(jq -n \
        },
        {
          "role": "user",
-	 "content": ("Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should follow the conventional commit format (emoji+status) and provide meaningful context for future readers.\n\nChanges:\n" + $diff)
+         "content": ("Suggest an informative commit message by summarizing code changes from the shared command output. The commit message should follow the conventional commit format (emoji+status) and provide meaningful context for future readers.\n\nChanges:\n" + $diff)
        }
      ],
-     "temperature": 0.2,
+     "temperature": 0.1,
      "max_tokens": 512,
-     "top_p": 0.5,
+     "top_p": 0.6,
      "frequency_penalty": 0,
      "presence_penalty": 0,
-     "model": "gpt-4o-ca",
+     "model": "gpt-4.1-nano",
      "stream": false
    }')
 
@@ -101,3 +101,4 @@ fi
 
 # 删除临时文件
 rm $file_path
+
